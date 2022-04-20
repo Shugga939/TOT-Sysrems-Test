@@ -1,0 +1,62 @@
+.mailLink {
+  position: relative;
+  text-decoration: none;
+  width: 150px;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 0px 10px 10px 0;
+  display: flex;
+  justify-content: space-between;
+  &:hover {
+    background-color: rgb(223, 222, 222);
+  }
+}
+
+.activeMailLink {
+  background-color: rgb(252, 152, 86);
+  &:hover {
+    background-color: rgb(252, 152, 86);
+
+  }
+}
+
+.optionButton {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background-image: url('https://www.gstatic.com/images/icons/material/system/1x/more_vert_black_20dp.png');
+  background-position: center;
+  background-color: rgb(252, 152, 86);
+
+  &:hover{
+    cursor: pointer;
+    background-color: white;
+  }
+}
+
+.optionButton__hide {
+  display: none;
+}
+
+.options {
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 160px;
+  width: max-content;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+
+  button {
+    padding: 1px;
+    margin: 5px 0;
+  }
+}
+
+.hide {
+  display: none;
+}

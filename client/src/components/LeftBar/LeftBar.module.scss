@@ -1,0 +1,19 @@
+.leftBar {
+  min-width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:flex-start;
+  padding: 50px 0px;
+  background: rgba(143, 145, 255, 0.089);
+}
+
+.linksContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.createFolder {
+  margin-left: 5px;
+}

@@ -1,0 +1,22 @@
+.mailPage {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  width: 100%;
+background-color: #ffffff;
+background-image: linear-gradient(315deg, #ffffff 0%, #eff5fc 74%);
+  
+
+}
+
+.letterPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+
+.rightBar {
+  width: 100%;
+  max-width: calc(100% - 250px);
+}
