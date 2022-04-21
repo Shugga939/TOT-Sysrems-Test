@@ -38,15 +38,14 @@ class mailController {
 
   async getAllLetters (req, res) {
     let {folder} = req.params
-    const allFolders = await Folder.findOne({_id: folder}, 'letters')
-    return res.json(allFolders.letters)
+      const allFolders = await Folder.findOne({_id: folder})
+      return res.json(allFolders.letters)
   }
 
   async getLetter (req, res) {
-    let {id} = req.params
+    let {id} = req.params 
     const currentLetter = await Letter.findOne({_id: id})
     return res.json(currentLetter)
-
   }
 
 }

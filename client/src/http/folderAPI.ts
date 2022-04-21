@@ -1,4 +1,3 @@
-import { IFolder } from '../types/types.js'
 import {$host} from './index.js'
 
 export const getFolders = async ()=> {
@@ -25,3 +24,4 @@ export const getLetter = async (folderID:string, letterID:string)=> {
   const response = await $host.get(`mail/${folderID}/${letterID}`)
   return response
 }
+

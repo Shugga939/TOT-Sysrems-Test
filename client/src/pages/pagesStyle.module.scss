@@ -19,4 +19,10 @@ background-image: linear-gradient(315deg, #ffffff 0%, #eff5fc 74%);
 .rightBar {
   width: 100%;
   max-width: calc(100% - 250px);
+
+  h1{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
 }

@@ -13,7 +13,6 @@ import pageStyle from './pagesStyle.module.scss'
 
 
 function renderItem (array:IEmail) {
-  console.log(array._id)
   return (
     <LettersLink
       author={array.author}
@@ -36,9 +35,8 @@ const InboxPage = observer(() => {
     if (!lettersCurrentFolder) {
       (async ()=> {
         const response: AxiosResponse<any> = await getAllLetters(currentIDFolder)
-         console.log(response.data)
-         letters.setLetters(response.data, currentIDFolder)
-         setLettersInCurrentFolder(letters.getLetters(currentIDFolder))
+        letters.setLetters(response.data, currentIDFolder)
+        setLettersInCurrentFolder(letters.getLetters(currentIDFolder))
       })()
     } else {
       setLettersInCurrentFolder(letters.getLetters(currentIDFolder))

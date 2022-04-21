@@ -3,14 +3,17 @@ import { IEmail } from '../types/types'
 
 
 interface ILettersStore {
-  [flodersName: string] : IEmail[]
+  [flodersName: string] : IEmail[],
 }
 
 export default class LettersStore {
-  private _lettersInFolder: ILettersStore 
+  private _lettersInFolder: ILettersStore
+  private _foundResultLetters:IEmail[]
 
   constructor () {
     this._lettersInFolder = {}
+    this._foundResultLetters = []
+
     makeAutoObservable(this)
   }
 
@@ -37,8 +40,17 @@ export default class LettersStore {
     } else {
       return undefined
     }
-
   }
+
+  setFoundResult (letters:IEmail[]) {
+    this._foundResultLetters = letters
+  }
+
+  getFoundResult (letters:IEmail[]) {
+     return this._foundResultLetters 
+  }
+
+
   // sortLetters (foldersName:string) { //todo
   // }
 

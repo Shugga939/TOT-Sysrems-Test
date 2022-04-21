@@ -7,19 +7,6 @@ import { getFolders } from './http/folderAPI';
 import './main.scss'
 import InboxPage from './pages/InboxPage';
 import LetterPage from './pages/LetterPage';
-import { IFolder } from './types/types';
-import { DRAFTS_ROUTE, INBOX_ROUTE, SENT_ROUTE, SPAM_ROUTE, TRASH_ROUTE } from './utils/consts';
-
-
-const loadMailRoutes: IFolder[] = [
-  {path:INBOX_ROUTE, name:'Входящие', id:'1'},
-  {path:SENT_ROUTE, name:'Отправленные', id:'2'}, 
-  {path:DRAFTS_ROUTE, name:'Черновики', id:'3'},
-  {path:SPAM_ROUTE, name:'Спам', id:'4'},
-  {path:TRASH_ROUTE, name:'Корзина', id:'5'},
-  {path:'/mail/sasd', name:'Работа',id:'6'},
-  {path:'/mail/loik', name:'Вакансии',id:'7'}, 
-]
 
 const App = observer(()=> {
   const {folders} = useContext(Context)

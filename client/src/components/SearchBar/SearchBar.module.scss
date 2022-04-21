@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  min-width: 150px;
-  width: 30%;
+  min-width: 350px;
+  width: 60%;
   margin: 30px 0px 0px 80px;
   
 }
@@ -38,22 +38,44 @@
   display: none;
   z-index: 100;
   background: white;
-
-  li {
-    list-style-type: none;
-    border-bottom: 1px solid gray;
-    padding: 5px 10px;
-
-    &:hover {
-      background-color: rgb(241, 241, 241);
-      cursor: pointer;
-    }
-    &:last-child{
-    border-bottom: none;
-    }
-  }
 }
 
 .serachResult__active {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lettersList {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchLetter{
+  text-decoration: none;
+}
+
+.wrapperLink {
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    background: rgb(231, 231, 231);
+  }
+}
+.searchLetterAuthor {
+  font-weight: bold;
+  padding: 10px 5px 5px 5px;
+}
+
+.searchLetterText{
+  padding: 0px 5px 5px 5px;
+  border-bottom: 1px solid gray ;
+}
+
+.findButton{
+
 }

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styles from './LeftBar.module.scss'
-import { Link, useLocation } from 'react-router-dom';
-import { DRAFTS_ROUTE, INBOX_ROUTE, SENT_ROUTE, SPAM_ROUTE, TRASH_ROUTE } from '../../utils/consts';
+import {  useLocation } from 'react-router-dom';
 import MailLink from '../ui/LinkFolder/LinkFolder';
 import EditModal from '../EditModal/EditModal';
 import { observer } from 'mobx-react-lite';
@@ -16,7 +15,7 @@ const LeftBar = observer(() => {
   const [createModalOpen, setCreateModalOpen] = useState<boolean>(false)
 
   const createFolder = (foldersName:string) => {
-    if (foldersName !== '')  {     // || !== start value
+    if (foldersName !== '')  { 
       (async ()=> {
         const response: AxiosResponse<any> = await addFolder(foldersName)
         folders.setFolder(response.data)
