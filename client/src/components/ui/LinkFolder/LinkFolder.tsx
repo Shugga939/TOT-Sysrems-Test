@@ -1,18 +1,23 @@
-import React, { useRef, useState } from 'react';
+import { AxiosResponse } from 'axios';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../..';
+import { editFolder } from '../../../http/folderAPI';
 import ConfirmModal from '../../ConfirmModal/ConfirmModal';
 import EditModal from '../../EditModal/EditModal';
 import styles from './LinkFolder.module.scss'
 
 interface LinkProps {
   path: string;
+  id: string;
   text: string
   active: boolean
   customFolder: boolean
 }
 
-const MailLink = ({path, text, active, customFolder}:LinkProps) => {
+const MailLink = ({path, text, active, customFolder, id}:LinkProps) => {
 
+  const {folders} = useContext(Context)
   const [optionsOpen,setOptionsOpen] = useState<boolean>(false)
   const [editModalOpen,setEditModalOpen] = useState<boolean>(false)
   const [removeModalOpen,setRemoveModalOpen] = useState<boolean>(false)
@@ -35,13 +40,27 @@ const MailLink = ({path, text, active, customFolder}:LinkProps) => {
   }
 
   const deleteFolder = (event:React.MouseEvent)=> {
-    console.log('delete')         // axios 
+    try{
+      (async ()=> {
+      await editFolder(id,undefined)
+    })()
+    folders.setDeleteFolder(id)
+    } catch (e) {
+      console.log(e)
+    }
     setRemoveModalOpen(false)
   }
 
   const saveFoldersName = (foldersName:string)=> {
     if (foldersName !== '')  {     // || !== start value
-      console.log('save' + foldersName)   // axios 
+      try{
+        (async ()=> {
+        await editFolder(id,foldersName)
+      })()
+      folders.setEditFolder(id, foldersName)
+      } catch (e) {
+        console.log(e)
+      }
       setEditModalOpen(false)
     } 
   }
@@ -59,13 +78,14 @@ const MailLink = ({path, text, active, customFolder}:LinkProps) => {
         show={editModalOpen} 
         callback={saveFoldersName}
         message={'Переименовать папку'}
-        inputsPlaceholder={path}
+        inputsPlaceholder={text}
       />
 
       {!customFolder?
         <Link to={path} className={active? `${styles.activeMailLink} ${styles.mailLink}`: styles.mailLink}> {text} </Link>
       :
-        <Link to={path} className={active? `${styles.activeMailLink} ${styles.mailLink}`: styles.mailLink}> {text}
+        <Link to={path} className={active? `${styles.activeMailLink} ${styles.mailLink}`: styles.mailLink}>
+          <div className={styles.text}> {text} </div>
           <button className={active? styles.optionButton : `${styles.optionButton} ${styles.optionButton__hide}`} onClick={handlerOptions}/>
           <div className={optionsOpen? styles.options : styles.hide}>
             <button className={styles.edit} onClick={openEditModal} >Переименовать</button>

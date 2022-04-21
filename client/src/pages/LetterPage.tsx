@@ -1,17 +1,34 @@
-import { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import { observer } from "mobx-react-lite";
+import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Context } from "..";
 import LeftBar from "../components/LeftBar/LeftBar";
 import LetterBoard from "../components/LetterBoard/LetterBoard";
+import { getLetter } from "../http/folderAPI";
 import { IEmail } from "../types/types";
 import pageStyle from './pagesStyle.module.scss'
 
 
 
-const LetterPage = () => {
-  const [letter, setLetter] = useState<IEmail>({author: '', text: '', date: 0, id:'0'})
-
+const LetterPage = observer(() => {
+  const {letters} = useContext(Context)
+  const {pathname} = useLocation()
+  const [letter, setLetter] = useState<IEmail | null>(null)
+  const folderId = pathname.split('/')[2]
+  const letterId = pathname.split('/')[3]
+  
   useEffect(()=> {
-    const letter = {author: 'Bill', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', date: Date.now(),id:'123sad'}
-    setLetter(letter)
+    const currentLetter:IEmail | undefined = letters.getLetter(folderId, letterId)
+    if (currentLetter) {
+      setLetter(currentLetter)
+    } else {
+      (async ()=> {
+        const response: AxiosResponse<any> = await getLetter(folderId, letterId)
+         console.log(response.data)
+         setLetter(response.data)
+      })()
+    }
   },[])
   
   return (
@@ -22,6 +39,6 @@ const LetterPage = () => {
       </div>
     </div>
   )
-}
+})
 
 export default LetterPage;

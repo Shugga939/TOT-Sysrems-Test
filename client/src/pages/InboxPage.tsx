@@ -1,37 +1,49 @@
-import { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import { observer } from "mobx-react-lite";
+import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Context } from "..";
 import LeftBar from "../components/LeftBar/LeftBar";
 import LettersLink from "../components/LettersLink/LettersLink";
 import List from "../components/List/List";
 import SearchBar from "../components/SearchBar/SearchBar";
+import { getAllLetters } from "../http/folderAPI";
 import { IEmail } from "../types/types";
 import pageStyle from './pagesStyle.module.scss'
 
 
 function renderItem (array:IEmail) {
+  console.log(array._id)
   return (
     <LettersLink
       author={array.author}
       text={array.text}
       date={array.date}
-      id={array.id}
-      key={array.id}
+      id={array._id}
+      key={array._id}
     />
   )
 }
 
-const InboxPage = () => {
-
+const InboxPage = observer(() => {
+  const {letters} = useContext(Context)
   const [lettersInCurrentFolder, setLettersInCurrentFolder] = useState<IEmail[]>()
+  const {pathname} = useLocation()
+  const currentIDFolder = pathname.split('/')[2]
 
   useEffect(()=> {
-    
-    const emails: IEmail[] = [            //axios to current folder id
-      {author: 'Alex', date:Date.now(), text:'Welcome kasmd', id: '1'},
-      {author: 'Igor', date:Date.now()-500000000, text:'Hello', id: '2'},
-      {author: 'Artem', date:Date.now()-5000000000, text:'Hi', id: '3'},
-    ]
-    setLettersInCurrentFolder(emails)
-  },[])
+    let lettersCurrentFolder = letters.getLetters(currentIDFolder)
+    if (!lettersCurrentFolder) {
+      (async ()=> {
+        const response: AxiosResponse<any> = await getAllLetters(currentIDFolder)
+         console.log(response.data)
+         letters.setLetters(response.data, currentIDFolder)
+         setLettersInCurrentFolder(letters.getLetters(currentIDFolder))
+      })()
+    } else {
+      setLettersInCurrentFolder(letters.getLetters(currentIDFolder))
+    }
+  },[currentIDFolder])
 
   return (
     <div className={pageStyle.mailPage}>
@@ -42,6 +54,6 @@ const InboxPage = () => {
         </div>
     </div>
   )
-}
+})
 
 export default InboxPage;

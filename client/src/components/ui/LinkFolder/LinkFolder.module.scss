@@ -1,12 +1,13 @@
 .mailLink {
   position: relative;
   text-decoration: none;
-  width: 150px;
+  max-width: 220px;
   margin: 5px 0;
   padding: 5px;
   border-radius: 0px 10px 10px 0;
   display: flex;
   justify-content: space-between;
+
   &:hover {
     background-color: rgb(223, 222, 222);
   }
@@ -20,7 +21,14 @@
   }
 }
 
+.text {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .optionButton {
+  position: relative;
   width: 25px;
   height: 25px;
   border-radius: 5px;
@@ -28,7 +36,6 @@
   background-image: url('https://www.gstatic.com/images/icons/material/system/1x/more_vert_black_20dp.png');
   background-position: center;
   background-color: rgb(252, 152, 86);
-
   &:hover{
     cursor: pointer;
     background-color: white;

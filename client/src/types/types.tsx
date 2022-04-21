@@ -2,7 +2,7 @@ export interface IEmail {
   author: string
   date: number
   text: string
-  id: string
+  _id: string
 }
 
 export interface IFolder {

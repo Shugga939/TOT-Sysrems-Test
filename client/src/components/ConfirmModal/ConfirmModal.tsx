@@ -12,6 +12,7 @@ interface ConfirmModalProps {
 const ConfirmModal = ({show, setShow, message, callback}:ConfirmModalProps) => {
 
   const closeModal = function(event:React.MouseEvent) {
+    event.preventDefault()
     const { classList } = event.target as HTMLElement;
     if (classList.contains(styles.modalMessageBackground) || 
         classList.contains(styles.closeMessageButton)) {

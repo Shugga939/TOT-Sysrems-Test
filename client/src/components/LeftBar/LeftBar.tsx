@@ -6,6 +6,8 @@ import MailLink from '../ui/LinkFolder/LinkFolder';
 import EditModal from '../EditModal/EditModal';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
+import { addFolder } from '../../http/folderAPI';
+import { AxiosResponse } from 'axios';
 
 
 const LeftBar = observer(() => {
@@ -15,7 +17,10 @@ const LeftBar = observer(() => {
 
   const createFolder = (foldersName:string) => {
     if (foldersName !== '')  {     // || !== start value
-      console.log('save' + foldersName)   // axios
+      (async ()=> {
+        const response: AxiosResponse<any> = await addFolder(foldersName)
+        folders.setFolder(response.data)
+      })()
       setCreateModalOpen(false)
     } 
   }
@@ -35,13 +40,14 @@ const LeftBar = observer(() => {
       />
       <button className={styles.createFolder} onClick={openCreateModal}>Создать папку</button>
       <div className={styles.linksContainer}>
-        {folders.getForlders().map((link)=> {
+        {folders.getForlders().map((link, index)=> {
           return <MailLink 
             path={link.path} 
-            text={link.name} 
+            id={link.id}
+            text={link.name}
             key={link.path} 
             active={location.pathname.includes(link.path)}
-            customFolder={false}
+            customFolder={index>=5? true: false}
             />
         })}
       </div>

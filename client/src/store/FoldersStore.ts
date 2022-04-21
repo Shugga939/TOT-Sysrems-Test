@@ -3,8 +3,8 @@ import { IFolder } from '../types/types'
 
 
 
-export default class FoldersStore {
-  _customFolders:IFolder[]
+export default class FoldersStore { 
+  private _customFolders: IFolder[]
 
   constructor () {
     this._customFolders = []
@@ -19,13 +19,20 @@ export default class FoldersStore {
     this._customFolders.push(folder)
   }
 
-  getForlders () {
-    return this._customFolders
+  setDeleteFolder(id:string) {
+    this.setFolders(this._customFolders.filter((el)=> {
+      return el.id != id
+    }))
+  }
+  
+  setEditFolder(id:string, newName:string) {
+    this._customFolders.forEach((el)=> {
+      if (el.id === id) el.name = newName
+    })
   }
 
-
-  // get currentUser () {   // {...user.currentUSer}
-  //   return this._user
-  // }
+  getForlders ():IFolder[] {
+    return this._customFolders
+  }
 
 } 

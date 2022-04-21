@@ -15,6 +15,7 @@ const EditModal = ({show, setShow, message, callback,inputsPlaceholder}:EditModa
   const inputRef = useRef<HTMLInputElement>(null)
 
   const closeModal = (event:React.MouseEvent)=> {
+    event.preventDefault()
     const { classList } = event.target as HTMLElement;
     if (classList.contains(styles.modalMessageBackground) || 
         classList.contains(styles.closeMessageButton)) {
@@ -23,11 +24,12 @@ const EditModal = ({show, setShow, message, callback,inputsPlaceholder}:EditModa
   }
 
   const saveChanges = (event:React.MouseEvent)=> {
+    event.preventDefault()
     callback(inputRef.current?.value)
   }
   
   return(
-    <div className={show? styles.modalMessageBackground: styles.hide} onClick={closeModal}>
+    <form className={show? styles.modalMessageBackground: styles.hide} onClick={closeModal}>
       <div className={styles.modalMessageContainer}>
         <button className={styles.closeMessageButton} onClick={closeModal}/>
         <div className={styles.message}>{message}</div>
@@ -38,10 +40,10 @@ const EditModal = ({show, setShow, message, callback,inputsPlaceholder}:EditModa
           ref={inputRef}
         />
         <div className={styles.buttonsContainer}>
-          <button onClick={saveChanges}>Сохранить</button>
+          <button type='submit' onClick={saveChanges}>Сохранить</button>
         </div>
       </div>
-    </div>
+    </form>
   )
 }
 
