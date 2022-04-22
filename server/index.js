@@ -4,8 +4,6 @@ import cors from 'cors'
 import 'dotenv/config'
 import mongoose from 'mongoose';
 import router from './routes/main.js'
-import Message from './models/Folder.js'
-import path from 'path'
 
 const app = express();
 const server = createServer(app)

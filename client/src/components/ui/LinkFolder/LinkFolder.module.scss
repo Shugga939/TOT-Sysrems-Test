@@ -59,8 +59,17 @@
   border-radius: 5px;
 
   button {
-    padding: 1px;
-    margin: 5px 0;
+    margin-bottom: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    background: rgba(101, 135, 222, 0.65);
+  
+    &:hover{
+    background: rgba(101, 135, 222, 1);
+    cursor: pointer;
+    }
   }
 }
 

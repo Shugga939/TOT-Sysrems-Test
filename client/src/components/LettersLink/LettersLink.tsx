@@ -25,18 +25,18 @@ const LettersLink = ({author, text, date,id}:LettersLinkProps) => {
 
   return (
     <div className={styles.linkContainer} onClick={openLetter}>
-      <div className={styles.checkbox}>
+      {/* <div className={styles.checkbox}>
         <input type="checkbox" name="pick" />
       </div>
       <div className={styles.favouriteButton}>
         <input type="checkbox" name="favourite" />
-      </div>
+      </div> */}
       <div className={styles.author}> {author} </div>
       <div className={styles.preview}> {text} </div>
       <div className={styles.time}> {dateFormatting(date)} </div>
       <div className={styles.optionsContainer}>
         <div className={styles.deleteButton}>
-          <button className={styles.delete}> Delete </button>
+          {/* <button className={styles.delete}> Delete </button> */}
         </div>
       </div>
     </div>

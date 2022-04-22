@@ -8,11 +8,9 @@ interface ILettersStore {
 
 export default class LettersStore {
   private _lettersInFolder: ILettersStore
-  private _foundResultLetters:IEmail[]
 
   constructor () {
     this._lettersInFolder = {}
-    this._foundResultLetters = []
 
     makeAutoObservable(this)
   }
@@ -42,13 +40,13 @@ export default class LettersStore {
     }
   }
 
-  setFoundResult (letters:IEmail[]) {
-    this._foundResultLetters = letters
-  }
+  // setFoundResult (letters:IEmail[]) {
+  //   this._foundResultLetters = letters
+  // }
 
-  getFoundResult (letters:IEmail[]) {
-     return this._foundResultLetters 
-  }
+  // getFoundResult (letters:IEmail[]) {
+  //    return this._foundResultLetters 
+  // }
 
 
   // sortLetters (foldersName:string) { //todo
