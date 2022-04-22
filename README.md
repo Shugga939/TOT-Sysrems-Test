@@ -1,14 +1,14 @@
 # Mailbox app - test project for TOT Sysrems 
 
-How to run:
-git clone https://github.com/Shugga939/TOT-Sysrems-Test.git
-cd TOT-Sysrems-Test
-cd server
-npm install
-npm start
+### How to run:
+1. git clone https://github.com/Shugga939/TOT-Sysrems-Test.git
+2. cd TOT-Sysrems-Test
+3. cd server
+4. npm install
+5. npm start
 
-Open new terminal
-cd TOT-Sysrems-Test
-cd client
-npm install
-npm start
+**Open new terminal**
+6. cd TOT-Sysrems-Test
+7. cd client
+8. npm install
+9. npm start
