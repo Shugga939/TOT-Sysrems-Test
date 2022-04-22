@@ -8,7 +8,7 @@
 5. npm start
 
 **Open new terminal**
-6. cd TOT-Sysrems-Test
-7. cd client
-8. npm install
-9. npm start
+1. cd TOT-Sysrems-Test
+2. cd client
+3. npm install
+4. npm start
